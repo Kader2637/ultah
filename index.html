@@ -40,6 +40,15 @@
         .hidden {
             display: none;
         }
+        .giphy-embed {
+            max-width: 100%;
+            height: auto;
+        }
+        /* CSS untuk gambar responsif */
+        .responsive-img {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -47,41 +56,30 @@
 <div class="container">
     <div id="quiz">
         <div id="question1" class="question">
-            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" width="200" height="200" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>
+            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" class="giphy-embed" allowFullScreen></iframe>
             <p>1. Siapa nama kamu?</p>
             <input type="text" id="name" placeholder="Nama Kamu" autofocus>
             <button onclick="nextQuestion(1)">Next</button>
         </div>
 
         <div id="question2" class="question hidden">
-            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" width="200" height="200" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>
-
+            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" class="giphy-embed" allowFullScreen></iframe>
             <p>2. Apa yang kamu harapkan?</p>
             <input type="text" id="harapan" placeholder="Harapan Kamu" autofocus>
             <button onclick="nextQuestion(2)">Next</button>
         </div>
 
         <div id="question3" class="question hidden">
-            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" width="200" height="200" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>
-
+            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" class="giphy-embed" allowFullScreen></iframe>
             <p>3. Hal apa yang kamu sukai ketika bersamaku?</p>
             <input type="text" id="suka" placeholder="Hal yang kamu suka" autofocus>
             <button onclick="nextQuestion(3)">Next</button>
         </div>
 
         <div id="question4" class="question hidden">
-            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" width="200" height="200" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>
-
+            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" class="giphy-embed" allowFullScreen></iframe>
             <p>4. Ada hal apa yang tidak kamu sukai ketika bersamaku?</p>
             <input type="text" id="tidakSuka" placeholder="Hal yang tidak kamu suka" autofocus>
-            <button onclick="nextQuestion(4)">Next</button>
-        </div>
-
-        <div id="question5" class="question hidden">
-            <iframe src="https://giphy.com/embed/t669K4KJYwxEkRrooe" width="200" height="200" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>
-
-            <p>5. Tahun berapa kamu lahir?</p>
-            <input type="number" id="tahunLahir" placeholder="Tahun Lahir Kamu" min="1900" max="2023" autofocus>
             <button onclick="submitQuiz()">Kirim</button>
         </div>
     </div>
@@ -103,12 +101,12 @@
         const harapan = document.getElementById('harapan').value;
         const suka = document.getElementById('suka').value;
         const tidakSuka = document.getElementById('tidakSuka').value;
-        const tahunLahir = parseInt(document.getElementById('tahunLahir').value);
-        const currentYear = new Date().getFullYear();
-        const age = currentYear - tahunLahir;
 
-        const message = `Selamat ulang tahun, ${name}! Setiap detik bersamamu adalah anugerah. Di usia ${age} tahun ini, semoga kamu selalu dikelilingi cinta dan kebahagiaan. Kamu layak mendapatkan yang terbaik!`;
-        // Kirim email dengan jawaban
+        const age = new Date().getFullYear() - 2000; // Misal tahun lahir 2000
+        const tahunLahir = 2000; // Ganti sesuai kebutuhan
+
+        const message = `Selamat ulang tahun, ${name}! Setiap detik bersamamu adalah anugerah. Di usia 17 tahun ini, semoga kamu selalu dikelilingi cinta dan kebahagiaan. Kamu layak mendapatkan yang terbaik!`;
+        
         const emailBody = `Nama: ${name}\nHarapan: ${harapan}\nSuka: ${suka}\nTidak Suka: ${tidakSuka}\nTahun Lahir: ${tahunLahir}`;
         const emailAddress = 'abdulkader0126@gmail.com';
         window.location.href = `mailto:${emailAddress}?subject=Jawaban Kuis Ulang Tahun&body=${encodeURIComponent(emailBody)}`;
@@ -117,10 +115,9 @@
         document.getElementById('result').classList.remove('hidden');
         document.getElementById('result').innerHTML = `
             <h2>${message}</h2>
-            <img src="https://cdn.pixabay.com/animation/2022/07/31/08/01/08-01-44-30_512.gif" alt="Heart Image">
+            <img src="https://cdn.pixabay.com/animation/2022/07/31/08/01/08-01-44-30_512.gif" alt="Heart Image" class="responsive-img">
             <audio autoplay>
                 <source src="happy-birthday-220024.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
             </audio>
         `;
     }
